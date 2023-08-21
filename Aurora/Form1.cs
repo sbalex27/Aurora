@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace Aurora
 {
     public partial class Form1 : Form
     {
+        public readonly Compiler _compiler;
+
         public Form1()
         {
             InitializeComponent();
