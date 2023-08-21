@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace Aurora
 {
-    public partial class TokenList : Form
+    public partial class TokenListForm : Form
     {
         public readonly List<Token> _tokens;
 
-        public TokenList(List<Token> tokens)
+        public TokenListForm(List<Token> tokens)
         {
             _tokens = tokens;
             InitializeComponent();
@@ -26,7 +26,9 @@ namespace Aurora
         {
             foreach (var token in _tokens)
             {
-                tokenListView.Items.Add($"{token.Type} - {token.Value}");
+                var item = new ListViewItem(token.Type.ToString());
+                item.SubItems.Add(token.Value);
+                tokenListView.Items.Add(item);
             }
         }
     }

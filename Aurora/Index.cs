@@ -17,7 +17,7 @@ namespace Aurora
         private void tokenizeButton_Click(object sender, EventArgs e)
         {
             var tokens = _compiler.Tokenize(textInput.Text);
-            var tokenList = new TokenList(tokens);
+            var tokenList = new TokenListForm(tokens);
             tokenList.Show();
         }
     }
