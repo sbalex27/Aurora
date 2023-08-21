@@ -24,9 +24,9 @@ namespace Tests
         }
 
         [TestMethod]
-        [DataRow("integer myNumber = 23", 1)]
+        [DataRow("int myNumber = 23", 1)]
         [DataRow("string myString = \"Hello World\"", 1)]
-        [DataRow("integer myNumber = 23; string myString = \"Hello World\"", 2)]
+        [DataRow("int myNumber = 23; string myString = \"Hello World\"", 2)]
         public void SingleKeyword(string input, int tokens)
         {
             // Act
