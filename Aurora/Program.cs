@@ -18,10 +18,8 @@ namespace Aurora
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            // Dependency Injection
-            var services = new ServiceCollection();
-            services.ConfigureServices();
+            
+            var services = new ServiceCollection().ConfigureServices();
 
             using (var serviceProvider = services.BuildServiceProvider())
             {
@@ -29,10 +27,11 @@ namespace Aurora
             }
         }
 
-        static void ConfigureServices(this ServiceCollection services)
+        static ServiceCollection ConfigureServices(this ServiceCollection services)
         {
             services.AddScoped<Index>();
-            services.AddSingleton<ILexicalAnalyzer, LexicalAnalyzer>();
+            services.AddSingleton<ILexicalAnalyzer, RegexAnalyzer>();
+            return services;
         }
     }
 }

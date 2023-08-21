@@ -14,7 +14,7 @@ namespace Tests
         [TestInitialize]
         public void Initialize()
         {
-            _compiler = new LexicalAnalyzer();
+            _compiler = new RegexAnalyzer();
         }
 
         [TestCleanup]
@@ -44,7 +44,7 @@ namespace Tests
         public void ComplexLine()
         {
             // Arrange
-            string input = "integer myCustomInt = 23;";
+            string input = "int myCustomNumber = 23;";
 
             // Act
             var result = _compiler.Tokenize(input);
@@ -52,8 +52,6 @@ namespace Tests
             // Assert
             var keywords = result.Where(e => e.Type == TokenType.Keyword).Count();
             var identifiers = result.Where(e => e.Type == TokenType.Identifier).Count();
-            //var operators = result.Where(e => e.Type == TokenType.Operator).Count();
-            //var literals = result.Where(e => e.Type == TokenType.Literal).Count();
             var semicolons = result.Where(e => e.Type == TokenType.Semicolon).Count();
 
             Assert.AreEqual(1, keywords, "Keywords");

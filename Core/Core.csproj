@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LexicalAnalyzer\ILexicalAnalyzer.cs" />
-    <Compile Include="LexicalAnalyzer\LexicalAnalyzer.cs" />
+    <Compile Include="LexicalAnalyzer\RegexAnalyzer.cs" />
     <Compile Include="LexicalAnalyzer\Token.cs" />
     <Compile Include="LexicalAnalyzer\TokenType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

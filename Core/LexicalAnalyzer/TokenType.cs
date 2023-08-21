@@ -3,9 +3,10 @@
     public enum TokenType
     {
         Keyword,
-        Identifier,
+        Assignment,
+        Semicolon,
         StringLiteral,
         IntegerLiteral,
-        Semicolon,
+        Identifier,
     }
 }
