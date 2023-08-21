@@ -1,4 +1,4 @@
-﻿using Core;
+﻿using Core.LexicalAnalyzer;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -21,13 +21,18 @@ namespace Aurora
 
             // Dependency Injection
             var services = new ServiceCollection();
-            services.AddScoped<Index>();
-            services.AddSingleton<Compiler>();
+            services.ConfigureServices();
 
             using (var serviceProvider = services.BuildServiceProvider())
             {
                 Application.Run(serviceProvider.GetRequiredService<Index>());
             }
+        }
+
+        static void ConfigureServices(this ServiceCollection services)
+        {
+            services.AddScoped<Index>();
+            services.AddSingleton<ILexicalAnalyzer, LexicalAnalyzer>();
         }
     }
 }

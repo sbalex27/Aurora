@@ -1,4 +1,4 @@
-﻿using Core;
+﻿using Core.LexicalAnalyzer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -9,12 +9,12 @@ namespace Tests
     [TestClass]
     public class CompilerUnitTests
     {
-        public Compiler _compiler;
+        public ILexicalAnalyzer _compiler;
 
         [TestInitialize]
         public void Initialize()
         {
-            _compiler = new Compiler();
+            _compiler = new LexicalAnalyzer();
         }
 
         [TestCleanup]
@@ -34,10 +34,31 @@ namespace Tests
 
             // Assert
             var list = from token in result
-                         where token.Type == TokenType.Keyword
-                         select token;
-            
+                       where token.Type == TokenType.Keyword
+                       select token;
+
             Assert.AreEqual(tokens, list.Count());
+        }
+
+        [TestMethod]
+        public void ComplexLine()
+        {
+            // Arrange
+            string input = "integer myCustomInt = 23;";
+
+            // Act
+            var result = _compiler.Tokenize(input);
+
+            // Assert
+            var keywords = result.Where(e => e.Type == TokenType.Keyword).Count();
+            var identifiers = result.Where(e => e.Type == TokenType.Identifier).Count();
+            //var operators = result.Where(e => e.Type == TokenType.Operator).Count();
+            //var literals = result.Where(e => e.Type == TokenType.Literal).Count();
+            var semicolons = result.Where(e => e.Type == TokenType.Semicolon).Count();
+
+            Assert.AreEqual(1, keywords, "Keywords");
+            Assert.AreEqual(1, identifiers, "Identifiers");
+            Assert.AreEqual(1, semicolons, "Semicolons");
         }
     }
 }

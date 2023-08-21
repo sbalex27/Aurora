@@ -1,4 +1,4 @@
-﻿using Core;
+﻿using Core.LexicalAnalyzer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
