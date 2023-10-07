@@ -14,7 +14,7 @@ namespace Tests
         [TestInitialize]
         public void Initialize()
         {
-            _compiler = new RegexAnalyzer();
+            _compiler = new CSharpRegexAnalyzer();
         }
 
         [TestCleanup]

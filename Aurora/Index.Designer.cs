@@ -29,30 +29,25 @@
         private void InitializeComponent()
         {
             this.actionsBox = new System.Windows.Forms.GroupBox();
-            this.textInput = new System.Windows.Forms.TextBox();
             this.tokenizeButton = new System.Windows.Forms.Button();
+            this.textInput = new System.Windows.Forms.TextBox();
+            this.textBoxProblems = new System.Windows.Forms.TextBox();
+            this.problemsLabel = new System.Windows.Forms.Label();
+            this.buttonCompile = new System.Windows.Forms.Button();
             this.actionsBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // actionsBox
             // 
+            this.actionsBox.Controls.Add(this.buttonCompile);
             this.actionsBox.Controls.Add(this.tokenizeButton);
             this.actionsBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.actionsBox.Location = new System.Drawing.Point(10, 10);
             this.actionsBox.Name = "actionsBox";
-            this.actionsBox.Size = new System.Drawing.Size(780, 64);
+            this.actionsBox.Size = new System.Drawing.Size(829, 64);
             this.actionsBox.TabIndex = 0;
             this.actionsBox.TabStop = false;
             this.actionsBox.Text = "Actions";
-            // 
-            // textInput
-            // 
-            this.textInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textInput.Location = new System.Drawing.Point(10, 74);
-            this.textInput.Multiline = true;
-            this.textInput.Name = "textInput";
-            this.textInput.Size = new System.Drawing.Size(780, 366);
-            this.textInput.TabIndex = 1;
             // 
             // tokenizeButton
             // 
@@ -64,11 +59,52 @@
             this.tokenizeButton.UseVisualStyleBackColor = true;
             this.tokenizeButton.Click += new System.EventHandler(this.tokenizeButton_Click);
             // 
+            // textInput
+            // 
+            this.textInput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textInput.Location = new System.Drawing.Point(10, 74);
+            this.textInput.Multiline = true;
+            this.textInput.Name = "textInput";
+            this.textInput.Size = new System.Drawing.Size(829, 305);
+            this.textInput.TabIndex = 1;
+            // 
+            // textBoxProblems
+            // 
+            this.textBoxProblems.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.textBoxProblems.Location = new System.Drawing.Point(10, 419);
+            this.textBoxProblems.Multiline = true;
+            this.textBoxProblems.Name = "textBoxProblems";
+            this.textBoxProblems.Size = new System.Drawing.Size(829, 103);
+            this.textBoxProblems.TabIndex = 2;
+            // 
+            // problemsLabel
+            // 
+            this.problemsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.problemsLabel.AutoSize = true;
+            this.problemsLabel.Location = new System.Drawing.Point(16, 400);
+            this.problemsLabel.Name = "problemsLabel";
+            this.problemsLabel.Size = new System.Drawing.Size(56, 13);
+            this.problemsLabel.TabIndex = 3;
+            this.problemsLabel.Text = "Problemas";
+            // 
+            // buttonCompile
+            // 
+            this.buttonCompile.Location = new System.Drawing.Point(87, 35);
+            this.buttonCompile.Name = "buttonCompile";
+            this.buttonCompile.Size = new System.Drawing.Size(75, 23);
+            this.buttonCompile.TabIndex = 1;
+            this.buttonCompile.Text = "Compilar";
+            this.buttonCompile.UseVisualStyleBackColor = true;
+            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(849, 532);
+            this.Controls.Add(this.problemsLabel);
+            this.Controls.Add(this.textBoxProblems);
             this.Controls.Add(this.textInput);
             this.Controls.Add(this.actionsBox);
             this.Name = "Index";
@@ -85,6 +121,9 @@
         private System.Windows.Forms.GroupBox actionsBox;
         private System.Windows.Forms.TextBox textInput;
         private System.Windows.Forms.Button tokenizeButton;
+        private System.Windows.Forms.Button buttonCompile;
+        private System.Windows.Forms.TextBox textBoxProblems;
+        private System.Windows.Forms.Label problemsLabel;
     }
 }
 
