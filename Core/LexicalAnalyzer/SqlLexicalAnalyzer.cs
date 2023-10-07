@@ -38,16 +38,17 @@ namespace Core.LexicalAnalyzer
                 (@"'.*'", TokenType.Match),
                 (@"\d+", TokenType.Number),
                 (@"\b[A-Za-z_]\w*\b", TokenType.Identifier),
+                (@"\S+", TokenType.Undefined),
             };
 
             _compiled = new Regex(string.Join("|", _patterns.Select(e => $"({e.Pattern})")), RegexOptions.Compiled);
         }
 
-        public List<Token> Tokenize(string input)
+        public TokenCollection Tokenize(string input)
         {
             var matches = _compiled.Matches(input).Cast<Match>();
 
-            List<Token> tokens = new List<Token>();
+            TokenCollection tokens = new TokenCollection();
             foreach (var match in matches)
             {
                 foreach (var (pattern, type) in _patterns)
@@ -57,7 +58,9 @@ namespace Core.LexicalAnalyzer
                         Token token = new Token
                         {
                             Type = type,
-                            Value = match.Value
+                            Value = match.Value,
+                            Character = match.Index,
+                            Line = 1 // TODO: Implement line counting
                         };
 
                         tokens.Add(token);

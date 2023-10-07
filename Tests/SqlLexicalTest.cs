@@ -58,12 +58,39 @@ namespace Tests
         [DataRow("'My Value'", TokenType.Match)]
         [DataRow("'%MyLikeValue%'", TokenType.Match)]
         [DataRow("123", TokenType.Number)]
+        [DataRow("((", TokenType.Undefined)]
         public void TokenMatch(string input, TokenType expectedToken)
         {
             // Act
             var result = _lexicalAnalyzer.Tokenize(input);
 
             Assert.AreEqual(expectedToken, result[0].Type, input);
+        }
+
+
+        [TestMethod]
+        [DataRow("SELECT * FROM Products WHERE IdProduct = 1", 0)]
+        [DataRow("SELECT Id, Name FROM Brands WHERE IdBrand = (", 1)]
+        [DataRow("( FROM X TO -", 2)]
+        public void ErrorCount(string input, int errorCount)
+        {
+            // Act
+            var result = _lexicalAnalyzer.Tokenize(input);
+
+            // Assert
+            Assert.AreEqual(errorCount, result.ErrorCount);
+        }
+
+        [TestMethod]
+        [DataRow("(", 0)]
+        [DataRow("SELECT - FROM SOLICITUD", 7)]
+        public void ErrorCharacterPosition(string input, int characterPositionIndex)
+        {
+            // Act
+            var result = _lexicalAnalyzer.Tokenize(input);
+
+            // Assert
+            Assert.AreEqual(characterPositionIndex, result.Errors[0].Character);
         }
     }
 }

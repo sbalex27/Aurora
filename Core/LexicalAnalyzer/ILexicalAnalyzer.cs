@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Core.LexicalAnalyzer
+﻿namespace Core.LexicalAnalyzer
 {
     public interface ILexicalAnalyzer
     {
-        List<Token> Tokenize(string input);
+        TokenCollection Tokenize(string input);
     }
 }

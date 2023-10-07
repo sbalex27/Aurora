@@ -42,5 +42,7 @@ namespace Core.LexicalAnalyzer
         // ORDER
         Desc,
         Asc,
+
+        Undefined,
     }
 }

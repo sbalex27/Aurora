@@ -30,9 +30,9 @@ namespace Core.LexicalAnalyzer
             _compiledPatterns = new Regex(joinedPatterns, RegexOptions.Compiled);
         }
 
-        public List<Token> Tokenize(string input)
+        public TokenCollection Tokenize(string input)
         {
-            List<Token> tokens = new List<Token>();
+            TokenCollection tokens = new TokenCollection();
 
             foreach (Match match in _compiledPatterns.Matches(input))
             {
