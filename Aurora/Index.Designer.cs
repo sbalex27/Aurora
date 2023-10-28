@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.actionsBox = new System.Windows.Forms.GroupBox();
+            this.buttonCompile = new System.Windows.Forms.Button();
             this.tokenizeButton = new System.Windows.Forms.Button();
             this.textInput = new System.Windows.Forms.TextBox();
             this.textBoxProblems = new System.Windows.Forms.TextBox();
             this.problemsLabel = new System.Windows.Forms.Label();
-            this.buttonCompile = new System.Windows.Forms.Button();
             this.actionsBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +48,16 @@
             this.actionsBox.TabIndex = 0;
             this.actionsBox.TabStop = false;
             this.actionsBox.Text = "Actions";
+            // 
+            // buttonCompile
+            // 
+            this.buttonCompile.Location = new System.Drawing.Point(87, 35);
+            this.buttonCompile.Name = "buttonCompile";
+            this.buttonCompile.Size = new System.Drawing.Size(75, 23);
+            this.buttonCompile.TabIndex = 1;
+            this.buttonCompile.Text = "Compilar";
+            this.buttonCompile.UseVisualStyleBackColor = true;
+            this.buttonCompile.Click += new System.EventHandler(this.buttonCompile_Click);
             // 
             // tokenizeButton
             // 
@@ -88,15 +98,6 @@
             this.problemsLabel.Size = new System.Drawing.Size(56, 13);
             this.problemsLabel.TabIndex = 3;
             this.problemsLabel.Text = "Problemas";
-            // 
-            // buttonCompile
-            // 
-            this.buttonCompile.Location = new System.Drawing.Point(87, 35);
-            this.buttonCompile.Name = "buttonCompile";
-            this.buttonCompile.Size = new System.Drawing.Size(75, 23);
-            this.buttonCompile.TabIndex = 1;
-            this.buttonCompile.Text = "Compilar";
-            this.buttonCompile.UseVisualStyleBackColor = true;
             // 
             // Index
             // 
