@@ -44,7 +44,7 @@ namespace Core.LexicalAnalyzer
         public TokenCollection Tokenize(string input)
         {
             var matches = _compiled.Matches(input).Cast<Match>();
-
+            var follows = GetFollows();
             TokenCollection tokens = new TokenCollection();
             foreach (var match in matches)
             {
@@ -52,12 +52,15 @@ namespace Core.LexicalAnalyzer
                 {
                     if (Regex.IsMatch(match.Value, pattern))
                     {
+                        //var allowFollows = follows.FirstOrDefault(x => x.Item1 == type).Item2;
+                        var allowFollows = follows.Where(x => x.Item1 == type).SelectMany(x => x.Item2).ToList();
                         Token token = new Token
                         {
                             Type = type,
                             Value = match.Value,
                             Character = match.Index,
-                            Line = 1 // TODO: Implement line counting
+                            Line = 1,// TODO: Implement line counting
+                            AllowFollows = allowFollows,
                         };
 
                         tokens.Add(token);
@@ -67,6 +70,95 @@ namespace Core.LexicalAnalyzer
             }
 
             return tokens;
+        }
+
+        public List<(TokenType, TokenType[])> GetFollows()
+        {
+            return new List<(TokenType, TokenType[])>
+            {
+                (TokenType.Select, new[] {
+                    TokenType.Asterisk,
+                    TokenType.Identifier,
+                }),
+                (TokenType.From, new[]
+                {
+                    TokenType.Identifier,
+                }),
+                (TokenType.Where, new[]
+                {
+                    TokenType.Identifier,
+                }),
+                (TokenType.OrderBy, new[]
+                {
+                    TokenType.Identifier,
+                }),
+                (TokenType.Insert, new[]
+                {
+                    TokenType.Into,
+                }),
+                (TokenType.Into, new[]
+                {
+                    TokenType.Identifier,
+                }),
+                (TokenType.Values, new[]
+                {
+                    TokenType.Match,
+                    TokenType.Number,
+                }),
+                (TokenType.Update, new[]
+                {
+                    TokenType.Identifier,
+                }),
+                (TokenType.Set, new[]
+                {
+                    TokenType.Identifier,
+                }),
+                (TokenType.Delete, new[]
+                {
+                    TokenType.From,
+                }),
+                (TokenType.Identifier, new[]
+                {
+                    TokenType.Comma,
+                    TokenType.Where,
+                    TokenType.Asc,
+                    TokenType.Desc,
+                    TokenType.Undefined,
+                    TokenType.Equals,
+                    TokenType.Set,
+                }),
+                (TokenType.Match, new[]
+                {
+                    TokenType.Comma,
+                    TokenType.Where,
+                    TokenType.Asc,
+                    TokenType.Desc,
+                    TokenType.Undefined,
+                }),
+                (TokenType.Number, new[]
+                {
+                    TokenType.Comma,
+                    TokenType.Where,
+                    TokenType.Asc,
+                    TokenType.Desc,
+                    TokenType.OrderBy,
+                }),
+                (TokenType.Comma, new[]
+                {
+                    TokenType.Identifier,
+                    TokenType.Match,
+                    TokenType.Number,
+                }),
+                (TokenType.Asterisk, new[]
+                {
+                    TokenType.From,
+                }),
+                (TokenType.Equals, new[]
+                {
+                    TokenType.Match,
+                    TokenType.Number,
+                }),
+            };
         }
     }
 }

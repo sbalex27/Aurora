@@ -78,7 +78,7 @@ namespace Tests
             var result = _lexicalAnalyzer.Tokenize(input);
 
             // Assert
-            Assert.AreEqual(errorCount, result.ErrorCount);
+            Assert.AreEqual(errorCount, result.UndefinedCount);
         }
 
         [TestMethod]
@@ -91,6 +91,37 @@ namespace Tests
 
             // Assert
             Assert.AreEqual(characterPositionIndex, result.Errors[0].Character);
+        }
+
+        [TestMethod]
+        [DataRow("SELECT UPDATE", TokenType.Update)]
+        [DataRow("SELECT INSERT", TokenType.Insert)]
+        [DataRow("SELECT DELETE", TokenType.Delete)]
+        public void FirstUnspectedToken(string input, TokenType unespected)
+        {
+            var result = _lexicalAnalyzer.Tokenize(input);
+            var firstUnespected = result.UnespectedTokens.FirstOrDefault();
+            Assert.AreEqual(unespected, firstUnespected.Type);
+        }
+
+        [TestMethod]
+        // SHOULD BE FALSE
+        [DataRow("SELECT * FROM PRODUCTS", false)]
+        [DataRow("SELECT * FROM PRODUCTS WHERE IdProduct = 1", false)]
+        [DataRow("SELECT * FROM PRODUCTS WHERE IdProduct = 1 ORDER BY Name", false)]
+        [DataRow("UPDATE PRODUCTS SET Name = 'MyName' WHERE IdProduct = 1", false)]
+        [DataRow("DELETE FROM PRODUCTS WHERE IdProduct = 1", false)]
+        // SHOULD BE TRUE
+        [DataRow("SELECT UPDATE", true)]
+        [DataRow("INSERT DELETE INTO USUARIOS", true)]
+        [DataRow("SELECT INSERT DELETE", true)]
+        [DataRow("SELECT INSERT DELETE UPDATE", true)]
+        [DataRow("DELETE * FROM USUARIO", true)]
+        [DataRow("GROUP BY *", true)]
+        public void ContainsUnspectedtokens(string input, bool contains)
+        {
+            var result = _lexicalAnalyzer.Tokenize(input);
+            Assert.AreEqual(contains, result.HasErrors);
         }
     }
 }
