@@ -9,7 +9,7 @@ namespace Tests
     [TestClass]
     public class CompilerUnitTests
     {
-        public ILexicalAnalyzer _compiler;
+        public IAnalyzer _compiler;
 
         [TestInitialize]
         public void Initialize()

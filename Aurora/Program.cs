@@ -30,7 +30,7 @@ namespace Aurora
         static ServiceCollection ConfigureServices(this ServiceCollection services)
         {
             services.AddScoped<Index>();
-            services.AddSingleton<ILexicalAnalyzer, SqlLexicalAnalyzer>();
+            services.AddSingleton<IAnalyzer, SqlAnalyzer>();
             return services;
         }
     }

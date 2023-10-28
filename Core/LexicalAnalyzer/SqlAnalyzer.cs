@@ -6,12 +6,12 @@ namespace Core.LexicalAnalyzer
 {
     using TokenPatternList = List<(string Pattern, TokenType Type)>;
 
-    public class SqlLexicalAnalyzer : ILexicalAnalyzer
+    public class SqlAnalyzer : IAnalyzer
     {
         private readonly TokenPatternList _patterns;
         private readonly Regex _compiled;
 
-        public SqlLexicalAnalyzer()
+        public SqlAnalyzer()
         {
             _patterns = new TokenPatternList
             {

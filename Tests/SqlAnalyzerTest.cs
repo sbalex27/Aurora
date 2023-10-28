@@ -7,14 +7,14 @@ using System.Linq;
 namespace Tests
 {
     [TestClass]
-    public class SqlLexicalTest
+    public class SqlAnalyzerTest
     {
-        private ILexicalAnalyzer _lexicalAnalyzer;
+        private IAnalyzer _lexicalAnalyzer;
 
         [TestInitialize]
         public void Initialize()
         {
-            _lexicalAnalyzer = new SqlLexicalAnalyzer();
+            _lexicalAnalyzer = new SqlAnalyzer();
         }
 
         [TestCleanup]

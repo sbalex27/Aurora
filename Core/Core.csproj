@@ -42,9 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LexicalAnalyzer\Error.cs" />
-    <Compile Include="LexicalAnalyzer\ILexicalAnalyzer.cs" />
+    <Compile Include="LexicalAnalyzer\IAnalyzer.cs" />
     <Compile Include="LexicalAnalyzer\CSharpRegexAnalyzer.cs" />
-    <Compile Include="LexicalAnalyzer\SqlLexicalAnalyzer.cs" />
+    <Compile Include="LexicalAnalyzer\SqlAnalyzer.cs" />
     <Compile Include="LexicalAnalyzer\Token.cs" />
     <Compile Include="LexicalAnalyzer\TokenCollection.cs" />
     <Compile Include="LexicalAnalyzer\TokenType.cs" />

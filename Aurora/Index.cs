@@ -7,9 +7,9 @@ namespace Aurora
 {
     public partial class Index : Form
     {
-        public readonly ILexicalAnalyzer _compiler;
+        public readonly IAnalyzer _compiler;
 
-        public Index(ILexicalAnalyzer compiler)
+        public Index(IAnalyzer compiler)
         {
             _compiler = compiler;
             InitializeComponent();

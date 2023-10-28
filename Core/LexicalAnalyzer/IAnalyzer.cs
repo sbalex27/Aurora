@@ -1,6 +1,6 @@
 ﻿namespace Core.LexicalAnalyzer
 {
-    public interface ILexicalAnalyzer
+    public interface IAnalyzer
     {
         TokenCollection Tokenize(string input);
     }

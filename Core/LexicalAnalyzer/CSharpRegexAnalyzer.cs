@@ -7,7 +7,7 @@ namespace Core.LexicalAnalyzer
 {
     using TokenPatternList = List<(string Pattern, TokenType Type)>;
 
-    public class CSharpRegexAnalyzer : ILexicalAnalyzer
+    public class CSharpRegexAnalyzer : IAnalyzer
     {
         private readonly TokenPatternList _patterns;
         private readonly Regex _compiledPatterns;
