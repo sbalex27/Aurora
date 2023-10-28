@@ -18,21 +18,21 @@ namespace Aurora
         private void tokenizeButton_Click(object sender, EventArgs e)
         {
             var tokens = _compiler.Tokenize(textInput.Text);
-            var tokenList = new TokenListForm(tokens);
-            tokenList.Show();
+            new TokenListForm(tokens).Show();
         }
 
         private void buttonCompile_Click(object sender, EventArgs e)
         {
+            textBoxProblems.Text = string.Empty;
             var tokens = _compiler.Tokenize(textInput.Text);
 
             if (tokens.HasErrors)
             {
-                var messages = tokens.Errors.Select(x => $"Caracter '{x.Value}' inesperado en caracter {x.Character}");
-
-                var concatenatedMessages = string.Join(Environment.NewLine, messages);
-
-                textBoxProblems.Text = concatenatedMessages;
+                var messages = tokens.Errors.Select(x => $"Caracter '{x.Value}' inesperado en posición {x.Character}");
+                textBoxProblems.Text = string.Join(Environment.NewLine, messages);
+            } else
+            {
+                MessageBox.Show("Compilación exitosa");
             }
         }
     }
